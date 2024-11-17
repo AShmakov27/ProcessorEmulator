@@ -13,6 +13,7 @@ int main()
 
     memory.LoadData(initialData);
 
+
     std::vector<uint32_t> program = {
         0b0000000000100000u, // LOAD R0, [R2]    CmdType: 0, Operand1: 0, Operand2: 2, Operand3: 0
         0b1110000001000000u, // INC R0           CmdType: 7, Operand1: 0, Operand2: 4, Operand3: 0          
