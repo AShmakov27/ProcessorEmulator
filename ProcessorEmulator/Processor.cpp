@@ -8,13 +8,13 @@ void Processor::executeProgram() {
     while (running) {
         if (pc < 0 || pc >= static_cast<int>(memory.memory.size())) {
             std::cerr << "Program counter exceeded program size!" << std::endl;
-            break;  // Остановка, если pc выходит за пределы
+            break; 
         }
-        Instruction instruction = memory.FetchInstruction(pc);  // Извлечение команды
-        running = decodeAndExecute(instruction);  // Декодирование и выполнение команды
+        Instruction instruction = memory.FetchInstruction(pc); 
+        running = decodeAndExecute(instruction);  
 
         if (!running) {
-            break;  // Остановка при HALT
+            break; 
         }
 
         if (instruction.CmdType != JUMP && instruction.CmdType != JUMP_IF) {
@@ -39,8 +39,8 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
         break;
 
     case STORE:
-        std::cout << "Значение из R" << op2 << " (" << reg[op2] << ") записано в последний элемент памяти." << std::endl;
-        memory.memory[memory.memory[0] + 1] = reg[op2];  // Сохранение данных из регистра в память
+        std::cout << "Значение из R" << op2 << " (" << reg[op2] << ") записано в " << op1 << " элемент памяти." << std::endl;
+        memory.memory[op1] = reg[op2];  // Сохранение данных из регистра в память
         break;
 
     case ADD:
@@ -55,12 +55,11 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
     case JUMP:
         std::cout << "Переход" << std::endl;
         pc = (int)op1;  // Переход к указанному адресу
-        return true;  // Сброс автоматического увеличения PC
+        break;
 
     case JUMP_IF:
         if (reg[op1] == reg[op2]) {
             pc = (int)op3;  // Переход по адресу, если условие выполнено
-            return true;  // Не увеличиваем PC, т.к. прыжок
         }
         break;
 
@@ -79,7 +78,6 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
         break;
     }
 
-    // Вывод состояния процессора и памяти после каждой команды
     std::cout << "PC: " << pc << "\nРегистры: ";
     for (int i = 0; i < 4; i++) {
         std::cout << "R" << i << ": " << reg[i] << " ";

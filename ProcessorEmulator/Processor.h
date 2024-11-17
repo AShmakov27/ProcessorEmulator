@@ -6,8 +6,8 @@
 
 class Processor {
 private:
-    int reg[4] = { 0 };  // 4 регистра общего назначения
-    int pc = 0;        // Счетчик команд
+    int reg[4] = { 0 };  
+    int pc = 0;       
 
     static const uint32_t LOAD = 0;     // 000
     static const uint32_t STORE = 1;    // 001
