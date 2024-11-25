@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 
-Memory::Memory(int dataSize, int programOffset) : memory(dataSize+ programOffset, 0) \
+Memory::Memory(int dataSize, int programOffset) : memory(dataSize+ programOffset, 0) 
 {
     Offset = programOffset;
 }

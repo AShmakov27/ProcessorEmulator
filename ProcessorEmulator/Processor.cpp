@@ -34,17 +34,17 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
 
     switch (cmdType) {
     case LOAD:
-        reg[op1] = memory.memory[reg[op2]];  // Загрузка данных из памяти в регистр
+        reg[op1] = memory.memory[reg[op2]];  
         std::cout << "Загрузка в регистр " << op1 << " значение " << memory.memory[reg[op2]] << std::endl;
         break;
 
     case STORE:
         std::cout << "Значение из R" << op2 << " (" << reg[op2] << ") записано в " << op1 << " элемент памяти." << std::endl;
-        memory.memory[op1] = reg[op2];  // Сохранение данных из регистра в память
+        memory.memory[op1] = reg[op2]; 
         break;
 
     case ADD:
-        reg[op3] = reg[op1] + reg[op2];  // Сложение двух регистров с результатом в третий регистр
+        reg[op3] = reg[op1] + reg[op2];  
         std::cout << "Сложение: R" << op1 << " + R" << op2 << " = " << reg[op3] << std::endl;
         break;
 
@@ -54,22 +54,27 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
 
     case JUMP:
         std::cout << "Переход" << std::endl;
-        pc = (int)op1;  // Переход к указанному адресу
+        pc = (int)op1;  
         break;
 
     case JUMP_IF:
-        if (reg[op1] == reg[op2]) {
-            pc = (int)op3;  // Переход по адресу, если условие выполнено
+        if (reg[op1] == reg[op2]) 
+        {
+            pc = (int)op3;  
+        }
+        else
+        {
+            pc++;
         }
         break;
 
     case INC:
-        reg[op1] += 1;  // Увеличение значения регистра на 1
+        reg[op1] += 1;  
         std::cout << "Увеличен регистр R" << op1 << " до " << reg[op1] << std::endl;
         break;
 
     case LOAD_SIZE:
-        reg[op1] = memory.memory[0] + 1;  // Загружаем размер массива в регистр
+        reg[op1] = memory.memory[0] + 1;  
         std::cout << "Загружен размер массива: " << reg[op1] << " в R" << op1 << std::endl;
         break;
 
