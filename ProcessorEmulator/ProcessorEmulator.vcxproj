@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="Instruction.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Processor.cpp" />
     <ClCompile Include="ProcessorEmulator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assembler.h" />
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Processor.h" />

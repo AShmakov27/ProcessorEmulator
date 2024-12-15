@@ -45,7 +45,7 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
 
     case ADD:
         reg[op3] = reg[op1] + reg[op2];  
-        std::cout << "Сложение: R" << op1 << " + R" << op2 << " = " << reg[op3] << std::endl;
+        std::cout << "Сложение: R" << op1 << " (" << reg[op1] << ") + R" << op2 << " (" << reg[op2] << ") " << std::endl;
         break;
 
     case HALT:
@@ -58,6 +58,7 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
         break;
 
     case JUMP_IF:
+        std::cout << "Проверка совпадения " << reg[op1] << " и " << reg[op2] << std::endl;
         if (reg[op1] == reg[op2]) 
         {
             pc = (int)op3;  
@@ -74,7 +75,7 @@ bool Processor::decodeAndExecute(const Instruction& instruction) {
         break;
 
     case LOAD_SIZE:
-        reg[op1] = memory.memory[0] + 1;  
+        reg[op1] = memory.memory[0]+1;  
         std::cout << "Загружен размер массива: " << reg[op1] << " в R" << op1 << std::endl;
         break;
 

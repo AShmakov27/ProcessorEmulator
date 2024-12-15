@@ -1,0 +1,13 @@
+INC 2 0 0
+LOAD 0 2 0
+INC 2 0 0
+LOAD_SIZE 3 0 0
+start:
+LOAD 1 2 0
+ADD 0 1 0
+INC 2 0 0
+JUMP_IF 2 3 end
+JUMP start
+end:
+STORE 15 0 0
+HALT
